@@ -20,6 +20,10 @@ func _ready() -> void:
 	%MusicToggle.toggled.connect(_on_music_toggled)
 	_update_labels()
 	Sound.update_music()
+	# Logo gently "breathes".
+	var tween := create_tween().set_loops().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(%Logo, "scale", Vector2.ONE * 1.06, 1.2)
+	tween.tween_property(%Logo, "scale", Vector2.ONE, 1.2)
 
 
 func _on_start() -> void:
