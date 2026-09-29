@@ -29,12 +29,12 @@
 ## 4. Project Layout
 
 * `project.godot` — portrait, `canvas_items` stretch, mobile renderer, mouse→touch emulation for desktop testing.
-* `scenes/Menu.tscn` + `scripts/Menu.gd` — start screen (main scene): New Game, Sound/Music ON/OFF, best score. Android back = quit.
-* `scenes/Main.tscn` — root (GameManager), `Board`, HUD (`Info` label, `TimerBar`, `ActionButton`, `MenuButton`). Android back = menu.
-* `scripts/GameManager.gd` — state machine (`STATE_OBSERVE`, `STATE_DIGGING`, `STATE_EVALUATING`), level config, scoring, HUD.
-* `scripts/GridController.gd` — grid drawing, spawning, touch→cell mapping, dig results. Draws placeholders with `_draw()`.
-* `scripts/Save.gd` (autoload `Save`) — best score + sound/music flags in `user://save.cfg` via ConfigFile.
-* `scripts/Sound.gd` (autoload `Sound`) — SFX (`hit`, `miss`, `new_level`, `level_up`, `game_over`, `click`) + looping music, all synthesized in code (same approach as `../booms`). `Sound.play(name)`, `Sound.update_music()`.
+* `scenes/Menu.tscn` + `scripts/Menu.gd` — start screen (main scene): New Game, Sound/Music ON/OFF, top-5 high score list. Android back = quit.
+* `scenes/Main.tscn` — root (GameManager), gradient `Background`, `Board`, HUD (`Info` label, `TimerBar`, centered `ActionButton` Next level/Retry/Save score, `NameEntry` 5-char LineEdit, `MenuButton`). Android back = menu.
+* `scripts/GameManager.gd` — state machine (`STATE_OBSERVE`, `STATE_DIGGING`, `STATE_EVALUATING`), level config, scoring, 3 lives (fail costs one; 0 = game over → name entry if `Save.qualifies`), HUD + shovel row `_draw()`, haptics.
+* `scripts/GridController.gd` — grid drawing, spawning, touch→cell mapping, dig results, dig juice (pop/shake anim, `CPUParticles2D` bursts, `popup()` floating text). Draws placeholders with `_draw()`.
+* `scripts/Save.gd` (autoload `Save`) — high score table (`scores`, top 5, `add_score`/`qualifies`), last name, sound/music flags in `user://save.cfg` via ConfigFile.
+* `scripts/Sound.gd` (autoload `Sound`) — SFX (`hit`, `miss`, `new_level`, `level_up`, `game_over`, `click`) + calm/sad music loops, all synthesized in code (same approach as `../booms`). `Sound.play(name)`, `Sound.update_music()`, `Sound.set_sad(on)` (sad loop after a failed level).
 * `tests/test_level.gd` — headless checks. Must `load()` game scripts at runtime, not `preload()`: autoload names don't exist yet when the test compiles.
 
 Diamond/Digger are drawn by `GridController._draw()` for now; split into own scenes (`Diamond.tscn`, `Digger.tscn`) when real sprites/animations arrive.
@@ -43,7 +43,8 @@ Diamond/Digger are drawn by `GridController._draw()` for now; split into own sce
 
 * Setup (one-time toolchain): `./scripts/setup.sh`
 * Run (desktop): `./scripts/run.sh`
-* Tests: `./scripts/test.sh` (exits non-zero unless `tests/test_level.gd` prints `OK`)
+* Tests: `./scripts/test.sh` (exits non-zero unless `tests/test_level.gd` prints `OK`; `--quit-after` stops a failed assert hanging)
+* Screenshots: temp scene driving `Main.tscn` + `godot --path . --resolution 720x1280 --write-movie out.png --fixed-fps 10 --quit-after N res://tmp.tscn` (headless can't render)
 * Phone: `./scripts/android.sh` (build + install + launch `com.ran1979.memorydigger`), `--build-only` for just the APK in `build/`
 * Scripts mirror `../booms/scripts`. Android: JDK 17, SDK `/opt/homebrew/share/android-commandlinetools`, preset in `export_presets.cfg`.
 

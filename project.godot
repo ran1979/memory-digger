@@ -8,6 +8,7 @@ config/name="Memory Digger"
 run/main_scene="res://scenes/Menu.tscn"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.7", "Mobile")
+config/icon="res://icon/icon_192.png"
 
 [autoload]
 
