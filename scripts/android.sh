@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Build a debug APK and (unless --build-only) install + launch it on a USB-connected device.
 #   ./scripts/android.sh              build, install, launch
-#   ./scripts/android.sh --build-only just build build/memory-digger-debug.apk
+#   ./scripts/android.sh --build-only just build build/diamond-dash-debug.apk
 # Needs: ./scripts/setup.sh done, Godot Android export templates installed, phone with USB debugging.
 source "$(dirname "$0")/godot_path.sh"
 PACKAGE=com.ran1979.memorydigger
-APK="$ROOT/build/memory-digger-debug.apk"
+APK="$ROOT/build/diamond-dash-debug.apk"
 
 export ANDROID_HOME="${ANDROID_HOME:-/opt/homebrew/share/android-commandlinetools}"
 # Godot's Android export needs JDK 17 (newer JDKs are not supported).
@@ -35,4 +35,4 @@ if ! "$ADB" devices | grep -qw device$; then
 fi
 "$ADB" install -r "$APK"
 "$ADB" shell monkey -p "$PACKAGE" -c android.intent.category.LAUNCHER 1 >/dev/null
-echo "Launched Memory Digger on device."
+echo "Launched Diamond Dash on device."

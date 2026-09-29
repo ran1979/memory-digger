@@ -1,8 +1,8 @@
-# CLAUDE.md - Memory Digger (Godot Android Game)
+# CLAUDE.md - Diamond Dash (Godot Android Game)
 
 ## 1. Project Overview
 
-* **Project Name:** Memory Digger (Working Title)
+* **Project Name:** Diamond Dash
 * **Target Platform:** Android (portrait, 720x1280 base, `canvas_items` stretch)
 * **Game Engine:** Godot 4.7 (GDScript)
 * **Genre:** Memory / Puzzle / Casual Mobile Game

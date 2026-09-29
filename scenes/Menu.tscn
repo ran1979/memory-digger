@@ -44,8 +44,8 @@ theme_override_constants/separation = 40
 [node name="Title" type="Label" parent="Box"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Memory
-Digger"
+text = "Diamond
+Dash"
 horizontal_alignment = 1
 
 [node name="Scores" type="Label" parent="Box"]

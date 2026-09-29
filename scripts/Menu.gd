@@ -11,7 +11,7 @@ func _ready() -> void:
 	else:
 		%ShareBest.visible = true
 		%ShareBest.pressed.connect(func(): Share.text(
-			"My best on Memory Digger is %d! 💎 Can you beat it?" % Save.best_score))
+			"My best on Diamond Dash is %d! 💎 Can you beat it?" % Save.best_score))
 	# Set toggles before connecting so loading state doesn't fire the handlers.
 	%SoundToggle.button_pressed = Save.sound_enabled
 	%MusicToggle.button_pressed = Save.music_enabled

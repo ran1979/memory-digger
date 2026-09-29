@@ -130,7 +130,7 @@ func passed() -> bool:
 
 
 func share_message() -> String:
-	return "I scored %d on Memory Digger and reached level %d! 💎 Can you beat me?" % [score, level]
+	return "I scored %d on Diamond Dash and reached level %d! 💎 Can you beat me?" % [score, level]
 
 
 func game_over() -> bool:

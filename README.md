@@ -1,4 +1,4 @@
-# Memory Digger
+# Diamond Dash
 
 A casual memory game for Android, built with Godot 4.7 (GDScript).
 
@@ -29,7 +29,7 @@ Each level adds diamonds, shortens memorize time, gives fewer spare shovels and 
 | `./scripts/run.sh` | Run on desktop (mouse emulates touch) |
 | `./scripts/test.sh` | Headless tests; exits non-zero unless they print `OK` |
 | `./scripts/android.sh` | Build the APK, install and launch on a connected phone |
-| `./scripts/android.sh --build-only` | Build `build/memory-digger-debug.apk` only |
+| `./scripts/android.sh --build-only` | Build `build/diamond-dash-debug.apk` only |
 
 Set `GODOT=/path/to/godot` to use a specific Godot binary.
 
