@@ -1,0 +1,87 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/Menu.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="start_bg"]
+bg_color = Color(0.2, 0.55, 0.3, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="toggle_bg"]
+bg_color = Color(0.22, 0.22, 0.26, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Box" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 80.0
+offset_right = 610.0
+offset_bottom = 1200.0
+alignment = 1
+theme_override_constants/separation = 40
+
+[node name="Title" type="Label" parent="Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Memory
+Digger"
+horizontal_alignment = 1
+
+[node name="Scores" type="Label" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "HIGH SCORES"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = SubResource("start_bg")
+theme_override_styles/hover = SubResource("start_bg")
+theme_override_styles/pressed = SubResource("start_bg")
+text = "New Game"
+
+[node name="Settings" type="Label" parent="Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="SoundToggle" type="Button" parent="Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("toggle_bg")
+theme_override_styles/hover = SubResource("toggle_bg")
+theme_override_styles/pressed = SubResource("toggle_bg")
+toggle_mode = true
+text = "Sound: ON"
+
+[node name="MusicToggle" type="Button" parent="Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("toggle_bg")
+theme_override_styles/hover = SubResource("toggle_bg")
+theme_override_styles/pressed = SubResource("toggle_bg")
+toggle_mode = true
+text = "Music: ON"
