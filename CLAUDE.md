@@ -35,6 +35,7 @@
 * `scripts/GridController.gd` — grid drawing, spawning, touch→cell mapping, dig results, dig juice (pop/shake anim, `CPUParticles2D` bursts, `popup()` floating text). Draws placeholders with `_draw()`.
 * `scripts/Save.gd` (autoload `Save`) — high score table (`scores`, top 5, `add_score`/`qualifies`), last name, sound/music flags in `user://save.cfg` via ConfigFile.
 * `scripts/Sound.gd` (autoload `Sound`) — SFX (`hit`, `miss`, `new_level`, `level_up`, `game_over`, `click`) + calm/sad music loops, all synthesized in code (same approach as `../booms`). `Sound.play(name)`, `Sound.update_music()`, `Sound.set_sad(on)` (sad loop after a failed level).
+* `scripts/Share.gd` (`class_name Share`) — `Share.text(msg)`: Android share sheet via `JavaClassWrapper` + `AndroidRuntime` (static calls only: `Intent.parseUri` + `createChooser`, no Gradle/plugin); desktop copies to clipboard. Used on game over + menu.
 * `tests/test_level.gd` — headless checks. Must `load()` game scripts at runtime, not `preload()`: autoload names don't exist yet when the test compiles.
 
 Diamond/Digger are drawn by `GridController._draw()` for now; split into own scenes (`Diamond.tscn`, `Digger.tscn`) when real sprites/animations arrive.

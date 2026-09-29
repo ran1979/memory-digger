@@ -14,6 +14,7 @@ const LIVES := 3
 @onready var action_button: Button = $ActionButton
 @onready var menu_button: Button = $MenuButton
 @onready var name_entry: LineEdit = $NameEntry
+@onready var share_button: Button = $ShareButton
 
 var state := STATE_OBSERVE
 var level := 1
@@ -47,6 +48,7 @@ func _ready() -> void:
 	board.cell_tapped.connect(_on_cell_tapped)
 	action_button.pressed.connect(_on_action_pressed)
 	menu_button.pressed.connect(_to_menu)
+	share_button.pressed.connect(func(): Share.text(share_message()))
 	name_entry.text_changed.connect(_on_name_changed)
 	name_entry.text_submitted.connect(func(_t): _on_action_pressed())
 	Sound.update_music()
@@ -75,6 +77,7 @@ func _set_state(s: int) -> void:
 	timer_bar.visible = s == STATE_OBSERVE
 	action_button.visible = s == STATE_EVALUATING
 	name_entry.visible = false
+	share_button.visible = false
 	if s == STATE_EVALUATING:
 		if not passed():
 			lives -= 1
@@ -84,6 +87,7 @@ func _set_state(s: int) -> void:
 		if game_over():
 			action_button.text = "Save score" if Save.qualifies(score) else "Game over"
 			name_entry.visible = Save.qualifies(score)
+			share_button.visible = true
 			name_entry.text = Save.last_name
 			name_entry.grab_focus.call_deferred()  # pops the Android keyboard
 		Sound.play("level_up" if passed() else "game_over")
@@ -123,6 +127,10 @@ func accuracy() -> float:
 
 func passed() -> bool:
 	return accuracy() >= cfg.pass_accuracy_percentage
+
+
+func share_message() -> String:
+	return "I scored %d on Memory Digger and reached level %d! 💎 Can you beat me?" % [score, level]
 
 
 func game_over() -> bool:

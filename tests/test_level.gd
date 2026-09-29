@@ -37,6 +37,7 @@ func _initialize() -> void:
 	for d in main.board.diamonds.duplicate():
 		main._on_cell_tapped(d)
 	assert(main.state == main.STATE_EVALUATING and main.passed())
+	assert(not main.share_button.visible, "share only at game over")
 	assert(main.new_best and save.scores.is_empty(), "score only saved at game over")
 	main._on_action_pressed()
 	assert(main.level == 2 and main.state == main.STATE_OBSERVE)
@@ -66,6 +67,7 @@ func _initialize() -> void:
 		if i == 0:
 			main._on_action_pressed()
 	assert(main.game_over() and main.name_entry.visible and main.action_button.text == "Save score")
+	assert(main.share_button.visible and "400" in main.share_message())
 	main.name_entry.insert_text_at_caret("abcdefg")
 	assert(main.name_entry.text == "abcde", "max 5 chars")
 	main._on_action_pressed()
@@ -77,6 +79,7 @@ func _initialize() -> void:
 	var menu = load("res://scenes/Menu.tscn").instantiate()
 	root.add_child(menu)
 	assert(menu.get_node("%Scores").text == "HIGH SCORES\n1.  ABCDE   400", menu.get_node("%Scores").text)
+	assert(menu.get_node("%ShareBest").visible)
 	menu.free()
 
 	print("OK")
