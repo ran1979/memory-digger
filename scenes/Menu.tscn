@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1"]
 [ext_resource type="Texture2D" path="res://icon/foreground.svg" id="2"]
+[ext_resource type="Texture2D" path="res://icon/ui/share.svg" id="3"]
 
 [sub_resource type="StyleBoxFlat" id="start_bg"]
 bg_color = Color(0.2, 0.55, 0.3, 1)
@@ -14,17 +15,17 @@ shadow_size = 10
 
 [sub_resource type="StyleBoxFlat" id="toggle_bg"]
 bg_color = Color(0.12, 0.08, 0.05, 0.7)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+corner_radius_top_left = 55
+corner_radius_top_right = 55
+corner_radius_bottom_right = 55
+corner_radius_bottom_left = 55
 
 [sub_resource type="StyleBoxFlat" id="share_bg"]
 bg_color = Color(0.2, 0.45, 0.8, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 55
+corner_radius_top_right = 55
+corner_radius_bottom_right = 55
+corner_radius_bottom_left = 55
 
 [sub_resource type="StyleBoxFlat" id="card_bg"]
 bg_color = Color(0, 0, 0, 0.35)
@@ -127,17 +128,6 @@ theme_override_font_sizes/font_size = 30
 text = "HIGH SCORES"
 horizontal_alignment = 1
 
-[node name="ShareBest" type="Button" parent="Box"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("share_bg")
-theme_override_styles/hover = SubResource("share_bg")
-theme_override_styles/pressed = SubResource("share_bg")
-text = "Share best score"
-
 [node name="Start" type="Button" parent="Box"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 130)
@@ -148,30 +138,41 @@ theme_override_styles/hover = SubResource("start_bg")
 theme_override_styles/pressed = SubResource("start_bg")
 text = "New Game"
 
-[node name="Toggles" type="HBoxContainer" parent="Box"]
+[node name="Icons" type="HBoxContainer" parent="Box"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 36
+alignment = 1
 
-[node name="SoundToggle" type="Button" parent="Box/Toggles"]
+[node name="ShareBest" type="Button" parent="Box/Icons"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 90)
+visible = false
+custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
+tooltip_text = "Share best score"
+theme_override_styles/normal = SubResource("share_bg")
+theme_override_styles/hover = SubResource("share_bg")
+theme_override_styles/pressed = SubResource("share_bg")
+icon = ExtResource("3")
+icon_alignment = 1
+
+[node name="SoundToggle" type="Button" parent="Box/Icons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+tooltip_text = "Sound"
 theme_override_styles/normal = SubResource("toggle_bg")
 theme_override_styles/hover = SubResource("toggle_bg")
 theme_override_styles/pressed = SubResource("toggle_bg")
 toggle_mode = true
-text = "Sound: ON"
+icon_alignment = 1
 
-[node name="MusicToggle" type="Button" parent="Box/Toggles"]
+[node name="MusicToggle" type="Button" parent="Box/Icons"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
+tooltip_text = "Music"
 theme_override_styles/normal = SubResource("toggle_bg")
 theme_override_styles/hover = SubResource("toggle_bg")
 theme_override_styles/pressed = SubResource("toggle_bg")
 toggle_mode = true
-text = "Music: ON"
+icon_alignment = 1

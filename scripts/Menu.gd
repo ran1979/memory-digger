@@ -1,6 +1,9 @@
 extends Control
 ## Start menu: new game, sound/music toggles, high score table.
 
+const SOUND_ICONS := [preload("res://icon/ui/sound_off.svg"), preload("res://icon/ui/sound_on.svg")]
+const MUSIC_ICONS := [preload("res://icon/ui/music_off.svg"), preload("res://icon/ui/music_on.svg")]
+
 
 func _ready() -> void:
 	%Scores.text = "HIGH SCORES"
@@ -46,8 +49,10 @@ func _on_music_toggled(on: bool) -> void:
 
 
 func _update_labels() -> void:
-	%SoundToggle.text = "Sound: %s" % ("ON" if Save.sound_enabled else "OFF")
-	%MusicToggle.text = "Music: %s" % ("ON" if Save.music_enabled else "OFF")
+	%SoundToggle.icon = SOUND_ICONS[int(Save.sound_enabled)]
+	%MusicToggle.icon = MUSIC_ICONS[int(Save.music_enabled)]
+	%SoundToggle.modulate.a = 1.0 if Save.sound_enabled else 0.6
+	%MusicToggle.modulate.a = 1.0 if Save.music_enabled else 0.6
 
 
 func _notification(what: int) -> void:
